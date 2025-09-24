@@ -9,30 +9,43 @@
       rel="stylesheet"
       href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
-    <script src="./script.js"></script>
   </head>
-  <body>
+  <body onload="init()">
     <h1>Quiz-App</h1>
     <section class="quiz-area">
-      <div class="quiz-card">
-        <h5 class="card-title mb-4">Card title</h5>
-        <div class="card-body mb-2 card-height">
+      <div class="quiz-card" id="end-screen" style="display: none;">
+        <h5 class="card-title mb-4">Keine weiteren Fragen!</h5>
+        <img class="end-screen-icon" src="./img/brain result.png" alt="result logo">
+        <div class="scoreboard">Du hast <b id="score"></b> von <b id="amount-questions"></b> richtig beantwortet.</div>
+        <button class="btn btn-primary" onclick="restartGame()">Erneut spielen</button>
+      </div>
+      <div class="quiz-card" id="start-screen">
+
+        <div class="progress" role="progressbar" aria-label="Example with label"               aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" id="progress-bar" style="width: 0%">25%</div>
+        </div>
+
+        <h5 class="card-title mb-4" id="question">Card title</h5>
+        <div class="card-body mb-2 answer-height" id="answer_1" onclick="answer(1)">
             This is some text within a card body.
         </div>
-        <div class="card-body mb-2 card-height">
+        <div class="card-body mb-2 answer-height" id="answer_2" onclick="answer(2)">
             This is some text within a card body.
         </div>
-        <div class="card-body mb-2 card-height">
+        <div class="card-body mb-2 answer-height" id="answer_3" onclick="answer(3)">
             This is some text within a card body.
         </div>
-        <div class="card-body mb-2 card-height">
+        <div class="card-body mb-2 answer-height" id="answer_4" onclick="answer(4)">
             This is some text within a card body.
         </div>
-        <div class="quiz-card-footer card-height">
-          <span>1 von 5</span>
-          <button class="btn btn-primary">senden</button>
+        <div class="quiz-card-footer">
+          <span><b id="start-question">1</b> von <b id="last-question">9</b></span>
+          <button class="btn btn-primary" id="next-button" onclick="nextQuestion()" disabled>senden</button>
         </div>
+
       </div>
     </section>
+    <script src="db.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
